@@ -15,7 +15,7 @@ let package = Package(
     name: "YourApp",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/creekpld/romanize.git", majorVersion: 1, minor: 0)
+        .Package(url: "https://github.com/creekpld/romanize.git", majorVersion: 1)
     ]
 )
 ```
@@ -24,11 +24,13 @@ let package = Package(
 
 or
 ``` swift
-romanize(안녕 하세요) // --> annyeong haseyo
+import Romanize
+
+romanize("안녕 하세요") // --> annyeong haseyo
 ```
 
 ``` swift
-romanize(안녕 하세요, true) // --> an-nyeong ha-se-yo
+romanize("안녕 하세요", true) // --> an-nyeong ha-se-yo
 ```
 
 ## Other Implementations
