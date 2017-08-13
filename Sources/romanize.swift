@@ -6,7 +6,7 @@
 /// Romanizes a String of Hangul Characters
 /// - Supports Hangul Syllables (U+AC00-U+D7A3)
 /// - Using Revised Romanization https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean
-func romanize(_ text: String, _ divideSyllables: Bool = false) -> String {
+public func romanize(_ text: String, _ divideSyllables: Bool = false) -> String {
     var textOut = ""               // create the new string to return the romanized text output
     let ga = UnicodeScalar(0xac00)!  // unicode start point value (the first char is 가 = "ga")
     let hih = UnicodeScalar(0xd7a3)! // unicode end point value (the last char is 힣 = "hih")

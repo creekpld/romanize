@@ -2,7 +2,7 @@
 
 Romanizes a String of Hangul Characters
 
-This is the swift library written in swift version 3.
+This is the swift library written in swift version 3.1
 
 ## Installation
 
@@ -15,7 +15,7 @@ let package = Package(
     name: "YourApp",
     targets: [],
     dependencies: [
-        .Package(url: "https://github.com/creekpld/romanize.git", majorVersion: 1),
+        .Package(url: "https://github.com/creekpld/romanize.git", majorVersion: 1, minor: 0)
     ]
 )
 ```

@@ -1,7 +1,7 @@
 import XCTest
-@testable import romanize
+@testable import Romanize
 
-class romanizeTests: XCTestCase {
+class RomanizeTests: XCTestCase {
 
     // test edge cases - 가 체 힣
     func testGA() {

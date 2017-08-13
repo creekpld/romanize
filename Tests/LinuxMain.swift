@@ -1,6 +1,6 @@
 import XCTest
-@testable import romanizeTests
+@testable import RomanizeTests
 
 XCTMain([
-    testCase(romanizeTests.allTests),
+    testCase(RomanizeTests.allTests),
 ])
