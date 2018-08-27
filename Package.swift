@@ -4,6 +4,9 @@ import PackageDescription
 
 let package = Package(
     name: "Romanize",
+    products: [
+        .library(name: "Romanize", targets: ["Romanize"]),
+        ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
@@ -15,5 +18,8 @@ let package = Package(
             name: "Romanize",
             dependencies: [],
             path: "Sources"),
+        .testTarget(
+            name: "RomanizeTests",
+            dependencies: ["Romanize"]),
         ]
 )
