@@ -16,13 +16,23 @@ This is the swift library written in swift version 3.1
 Install it with the Swift Package Manager.
 
 ``` swift
+// swift-tools-version:4.0
+
 import PackageDescription
 
 let package = Package(
     name: "YourApp",
-    targets: [],
+    products: [
+        .executable(name: "YourApp", targets: ["YourApp"]),
+    ],
     dependencies: [
-        .Package(url: "https://github.com/creekpld/romanize.git", majorVersion: 1)
+        .Package(url: "https://github.com/creekpld/romanize.git", from: "1.0.0")
+    ],
+    targets: [
+        .target(
+            name: "YourApp",
+            dependencies: ["Romanize"],
+            path: "Sources"),
     ]
 )
 ```
