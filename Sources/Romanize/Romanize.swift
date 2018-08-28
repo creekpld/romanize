@@ -1,4 +1,4 @@
-// romanize.swif
+// Romanize.swift
 //
 // Acknowledgements:
 // The Hangul Character Decomposition code is from here: https://github.com/cheunghy/kroman-swift
