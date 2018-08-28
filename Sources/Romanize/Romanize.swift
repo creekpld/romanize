@@ -5,6 +5,8 @@
 
 public class Romanize{
     
+    public init() {}
+    
     private var divider = "-"
     /// Romanizes a String of Hangul Characters
     /// - Supports Hangul Syllables (U+AC00-U+D7A3)
