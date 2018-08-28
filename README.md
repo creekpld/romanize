@@ -2,7 +2,7 @@
 
 Romanizes a String of Hangul Characters
 
-This is the swift library written in swift version 3.1
+This is the swift library written in swift version 4.0
 
 ## Features
 
