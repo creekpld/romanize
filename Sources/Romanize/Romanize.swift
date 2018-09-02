@@ -3,6 +3,10 @@
 // Acknowledgements:
 // The Hangul Character Decomposition code is from here: https://github.com/cheunghy/kroman-swift
 
+import Foundation
+// TODO: in Swift 4.2 use Int.random(in: 0 ..< 10) instead of arc4random() and remove import Foundation
+
+
 public class Romanize{
     
     public init() {}
@@ -31,9 +35,9 @@ public class Romanize{
                     textOut += self.divider
                 }
                 // append the matching romanized syllabels from the lookup tables
-                textOut += headJamos[head]
-                textOut += bodyJamos[body]
-                textOut += tailJamos[tail]
+                textOut += headJamos[head][0]
+                textOut += bodyJamos[body][0]
+                textOut += tailJamos[tail][0]
                 lastCharIsHangul = true
             // if the current character in not hangul, append it unchanged to the new string
             }else{
@@ -45,81 +49,101 @@ public class Romanize{
     }
     /// Revised Romanization of Korean Initial Consonant letters
     private var headJamos = [
-        "g",    // ㄱ
-        "kk",   // ㄲ
-        "n",    // ㄴ
-        "d",    // ㄷ
-        "tt",   // ㄸ
-        "r",    // ㄹ
-        "m",    // ㅁ
-        "b",    // ㅂ
-        "pp",   // ㅃ
-        "s",    // ㅅ
-        "ss",   // ㅆ
-        "",     // ㅇ
-        "j",    // ㅈ
-        "jj",   // ㅉ
-        "ch",   // ㅊ
-        "k",    // ㅋ
-        "t",    // ㅌ
-        "p",    // ㅍ
-        "h"     // ㅎ
+        ["g",   "ㄱ"],
+        ["kk",  "ㄲ"],
+        ["n",   "ㄴ"],
+        ["d",   "ㄷ"],
+        ["tt",  "ㄸ"],
+        ["r",   "ㄹ"],
+        ["m",   "ㅁ"],
+        ["b",   "ㅂ"],
+        ["pp",  "ㅃ"],
+        ["s",   "ㅅ"],
+        ["ss",  "ㅆ"],
+        ["",    "ㅇ"],
+        ["j",   "ㅈ"],
+        ["jj",  "ㅉ"],
+        ["ch",  "ㅊ"],
+        ["k",   "ㅋ"],
+        ["t",   "ㅌ"],
+        ["p",   "ㅍ"],
+        ["h",   "ㅎ"]
     ]
     /// Revised Romanization of Korean Vowel letters
     private var bodyJamos = [
-        "a",    // ㅏ
-        "ae",   // ㅐ
-        "ya",   // ㅑ
-        "yae",  // ㅒ
-        "eo",   // ㅓ
-        "e",    // ㅔ
-        "yeo",  // ㅕ
-        "ye",   // ㅖ
-        "o",    // ㅗ
-        "wa",   // ㅘ
-        "wae",  // ㅙ
-        "oe",   // ㅚ
-        "yo",   // ㅛ
-        "u",    // ㅜ
-        "wo",   // ㅝ
-        "we",   // ㅞ
-        "wi",   // ㅟ
-        "yu",   // ㅠ
-        "eu",   // ㅡ
-        "ui",   // ㅢ
-        "i"     // ㅣ
+        ["a",   "ㅏ"],
+        ["ae",  "ㅐ"],
+        ["ya",  "ㅑ"],
+        ["yae", "ㅒ"],
+        ["eo",  "ㅓ"],
+        ["e",   "ㅔ"],
+        ["yeo", "ㅕ"],
+        ["ye",  "ㅖ"],
+        ["o",   "ㅗ"],
+        ["wa",  "ㅘ"],
+        ["wae", "ㅙ"],
+        ["oe",  "ㅚ"],
+        ["yo",  "ㅛ"],
+        ["u",   "ㅜ"],
+        ["wo",  "ㅝ"],
+        ["we",  "ㅞ"],
+        ["wi",  "ㅟ"],
+        ["yu",  "ㅠ"],
+        ["eu",  "ㅡ"],
+        ["ui",  "ㅢ"],
+        ["i",   "ㅣ"]
     ]
     /// Revised Romanization of Korean Final Consonant letters
     private var tailJamos = [
-        "",     // ㅇ
-        "g",    // ㄱ
-        "k",    // ㄲ
-        "gs",   // ㄳ
-        "n",    // ㄴ
-        "nj",   // ㄵ
-        "nh",   // ㄶ
-        "t",    // ㄷ
-        "l",    // ㄹ
-        "lg",   // ㄺ
-        "lm",   // ㄻ
-        "lb",   // ㄼ
-        "ls",   // ㄽ
-        "lt",   // ㄾ
-        "lp",   // ㄿ
-        "lh",   // ㅀ
-        "m",    // ㅁ
-        "b",    // ㅂ
-        "bs",   // ㅄ
-        "s",    // ㅅ
-        "ss",   // ㅆ
-        "ng",   // ㅇ
-        "j",    // ㅈ
-        "ch",   // ㅊ
-        "k",    // ㅋ
-        "t",    // ㅌ
-        "p",    // ㅍ
-        "h"     // ㅎ
+        ["",    "ㅇ"],
+        ["g",   "ㄱ"],
+        ["k",   "ㄲ"],
+        ["gs",  "ㄳ"],
+        ["n",   "ㄴ"],
+        ["nj",  "ㄵ"],
+        ["nh",  "ㄶ"],
+        ["t",   "ㄷ"],
+        ["l",   "ㄹ"],
+        ["lg",  "ㄺ"],
+        ["lm",  "ㄻ"],
+        ["lb",  "ㄼ"],
+        ["ls",  "ㄽ"],
+        ["lt",  "ㄾ"],
+        ["lp",  "ㄿ"],
+        ["lh",  "ㅀ"],
+        ["m",   "ㅁ"],
+        ["b",   "ㅂ"],
+        ["bs",  "ㅄ"],
+        ["s",   "ㅅ"],
+        ["ss",  "ㅆ"],
+        ["ng",  "ㅇ"],
+        ["j",   "ㅈ"],
+        ["ch",  "ㅊ"],
+        ["k",   "ㅋ"],
+        ["t",   "ㅌ"],
+        ["p",   "ㅍ"],
+        ["h",   "ㅎ"]
     ]
+    
+    /// Hangul Generators
+    public func genHan(_ length: Int = 1) -> String {
+        
+        //// Code point for Jamo Index ////
+        // tail+(vowel)*28+(lead)*588+44032
+        
+        var arr = [Unicode.Scalar]()
+        
+        for _ in 0..<length {
+            let lead = Int(arc4random_uniform(UInt32(headJamos.count)))
+            let vowel = Int(arc4random_uniform(UInt32(bodyJamos.count)))
+            let tail = Int(arc4random_uniform(UInt32(tailJamos.count)))
+            let hangulChar = Unicode.Scalar(Int(tail+(vowel)*28+(lead)*588+44032))!
+            //print("Gen: lead=\(lead) vowel=\(vowel) tail=\(tail) cp=\(hangulChar.value) han=\(hangulChar)")
+            arr.append( hangulChar )
+        }
+        
+        return String(unicodeScalars: arr)
+    }
     
     /// Fluent API Methodes
     @discardableResult
@@ -130,19 +154,19 @@ public class Romanize{
     
     @discardableResult
     public func set(headJamo: HeadJamo, romanization: String) -> Self {
-        self.headJamos[headJamo.hashValue] = romanization
+        self.headJamos[headJamo.hashValue][0] = romanization
         return self
     }
     
     @discardableResult
     public func set(bodyJamo: BodyJamo, romanization: String) -> Self {
-        self.bodyJamos[bodyJamo.hashValue] = romanization
+        self.bodyJamos[bodyJamo.hashValue][0] = romanization
         return self
     }
     
     @discardableResult
     public func set(tailJamo: TailJamo, romanization: String) -> Self {
-        self.tailJamos[tailJamo.hashValue+1] = romanization
+        self.tailJamos[tailJamo.hashValue+1][0] = romanization
         return self
     }
 }
@@ -227,4 +251,14 @@ public enum TailJamo {
     case ㅌ
     case ㅍ
     case ㅎ
+}
+
+extension String {
+    init<S: Sequence>(unicodeScalars ucs: S)
+        where S.Iterator.Element == UnicodeScalar
+    {
+        var s = ""
+        s.unicodeScalars.append(contentsOf: ucs)
+        self = s
+    }
 }
