@@ -6,9 +6,10 @@ This is the swift library written in swift version 4.0
 
 ## Features
 
-- [x] Fluent API
-- [x] Fully configurable jamo Romanization
-- [x] configurable Syllable Divider
+- [x] fluent API
+- [x] fully configurable jamo romanization
+- [x] configurable syllable divider
+- [x] generate random hangul syllables
 - [x] API backwards compatibility
 
 ## Installation
@@ -54,11 +55,23 @@ romanize("안녕 하세요", true) // --> an-nyeong ha-se-yo
 
 ``` swift
 Romanize()
+    // set a custom syllable divider
     .set(divider: "_")
+    // customize all jamos and romanization
     .set(headJamo: .ㅁ, romanization: "M")
     .romanize("미안하지만 저는 이 근처 사람이 아니예요", true)
 
 // --> Mi_an_ha_ji_Man jeo_neun i geun_cheo sa_ram_i a_ni_ye_yo
+```
+
+## Other Features
+
+``` swift
+Romanize()
+    // generate 10 random hangul syllables 
+    .genHan(10)
+
+// something like this --> 믞쑠졮폦둨햅쵫멫쾜숛
 ```
 
 
