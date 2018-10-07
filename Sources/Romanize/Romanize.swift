@@ -134,9 +134,21 @@ public class Romanize{
         var arr = [Unicode.Scalar]()
         
         for _ in 0..<length {
+
+            #if swift(>=4.2)
+            let lead = Int.random(in: 0..<headJamos.count)
+            let vowel = Int.random(in: 0..<bodyJamos.count)
+            let tail = Int.random(in: 0..<tailJamos.count)
+            #elseif os(Linux)
+            let lead = Int(random() % headJamos.count)
+            let vowel = Int(random() % bodyJamos.count)
+            let tail = Int(random() % tailJamos.count)
+            #else
             let lead = Int(arc4random_uniform(UInt32(headJamos.count)))
             let vowel = Int(arc4random_uniform(UInt32(bodyJamos.count)))
             let tail = Int(arc4random_uniform(UInt32(tailJamos.count)))
+            #endif
+
             let hangulChar = Unicode.Scalar(Int(tail+(vowel)*28+(lead)*588+44032))!
             //print("Gen: lead=\(lead) vowel=\(vowel) tail=\(tail) cp=\(hangulChar.value) han=\(hangulChar)")
             arr.append( hangulChar )
