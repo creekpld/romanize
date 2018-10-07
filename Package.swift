@@ -11,9 +11,11 @@ let package = Package(
     targets: [
         .target(
             name: "Romanize",
-            dependencies: []),
+            dependencies: [],
+            path: "Sources"),
         .testTarget(
             name: "RomanizeTests",
-            dependencies: ["Romanize"]),
+            dependencies: ["Romanize"],
+            path: "Tests"),
     ]
 )
