@@ -9,7 +9,11 @@ import Foundation
 
 public class Romanize{
     
-    public init() {}
+    public init() {
+        #if os(Linux)
+            srand(UInt32(time(nil)))
+        #endif 
+    }
     
     private var divider = "-"
     /// Romanizes a String of Hangul Characters
