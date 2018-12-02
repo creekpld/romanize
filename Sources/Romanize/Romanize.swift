@@ -1,13 +1,29 @@
+//===------------------------------------------------------------------------------------------===//
+//
 // Romanize.swift
 //
+// Romanizes a String of (Korean) Hangul Characters
+// Supports Hangul Unicode Syllables U+AC00 - U+D7A3
+// Using Revised Romanization of Korean
+// See https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean
+//
+// Author Philipp Dylong
+//
+// See https://github.com/creekpld/romanize
+//
 // Acknowledgements:
-// The Hangul Character Decomposition code is from here: https://github.com/cheunghy/kroman-swift
+// hangul character decomposition algorithm
+// See https://github.com/zhangkaiyulw/kroman-swift
+//
+//===------------------------------------------------------------------------------------------===//
 
 import Foundation
-// TODO: in Swift 4.2 use Int.random(in: 0 ..< 10) instead of arc4random() and remove import Foundation
 
-
-public class Romanize{
+/* Romanize
+Use this class and it's fluent API methodes to customize the syllable divider,
+the romanization of every jamo and to generate random hangul characters.
+*/
+public class Romanize {
     
     public init() {
         #if os(Linux)
@@ -16,12 +32,18 @@ public class Romanize{
     }
     
     private var divider = "-"
-    /// Romanizes a String of Hangul Characters
-    /// - Supports Hangul Syllables (U+AC00-U+D7A3)
-    /// - Using Revised Romanization https://en.wikipedia.org/wiki/Revised_Romanization_of_Korean
+    
+    /// Romanizes a String of Hangul Characters Unicode Syllables U+AC00 - U+D7A3,
+    /// other characters are unaffected.
+    ///
+    /// - Parameters:
+    ///   - text: A text containing some Hangul characters.
+    ///   - divideSyllables: using a divider for each romanized character,
+    ///   if true = (hangeul) -> (han-geul).
+    /// - Returns: The romanized String.
     public func romanize(_ text: String, _ divideSyllables: Bool = false) -> String {
-        var textOut = ""               // create the new string to return the romanized text output
-        let ga = UnicodeScalar(0xac00)!  // unicode start point value (the first char is 가 = "ga")
+        var textOut = "" // create the new string to return the romanized text output
+        let ga = UnicodeScalar(0xac00)! // unicode start point value (the first char is 가 = "ga")
         let hih = UnicodeScalar(0xd7a3)! // unicode end point value (the last char is 힣 = "hih")
         let headInterval = 588
         let bodyInterval = 28
@@ -51,6 +73,7 @@ public class Romanize{
         }
         return textOut
     }
+    
     /// Revised Romanization of Korean Initial Consonant letters
     private var headJamos = [
         ["g",   "ㄱ"],
@@ -73,6 +96,7 @@ public class Romanize{
         ["p",   "ㅍ"],
         ["h",   "ㅎ"]
     ]
+    
     /// Revised Romanization of Korean Vowel letters
     private var bodyJamos = [
         ["a",   "ㅏ"],
@@ -97,6 +121,7 @@ public class Romanize{
         ["ui",  "ㅢ"],
         ["i",   "ㅣ"]
     ]
+    
     /// Revised Romanization of Korean Final Consonant letters
     private var tailJamos = [
         ["",    "ㅇ"],
@@ -129,11 +154,9 @@ public class Romanize{
         ["h",   "ㅎ"]
     ]
     
-    /// Hangul Generators
+    /// Hangul Generator
+    /// generates a string with random hangul characters of a given length.
     public func genHan(_ length: Int = 1) -> String {
-        
-        //// Code point for Jamo Index ////
-        // tail+(vowel)*28+(lead)*588+44032
         
         var arr = [Unicode.Scalar]()
         
@@ -152,9 +175,11 @@ public class Romanize{
             let vowel = Int(arc4random_uniform(UInt32(bodyJamos.count)))
             let tail = Int(arc4random_uniform(UInt32(tailJamos.count)))
             #endif
-
+            
+            /// Unicode Code points for Jamo Index
+            /// tail+(vowel)*28+(lead)*588+44032
             let hangulChar = Unicode.Scalar(Int(tail+(vowel)*28+(lead)*588+44032))!
-            //print("Gen: lead=\(lead) vowel=\(vowel) tail=\(tail) cp=\(hangulChar.value) han=\(hangulChar)")
+            
             arr.append( hangulChar )
         }
         
@@ -187,7 +212,7 @@ public class Romanize{
     }
 }
 
-
+/// legacy method, from before there was a class.
 public func romanize(_ text: String, _ divideSyllables: Bool = false) -> String {
     let r = Romanize()
     return r.romanize(text, divideSyllables)
