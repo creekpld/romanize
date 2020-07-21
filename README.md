@@ -1,3 +1,7 @@
+# This is not the Repo you are looking for! :alien:
+
+New development is taking place in [gitlab.com/pdylong/romanize](https://gitlab.com/pdylong/romanize) :ok_hand:.
+
 # Romanize
 
 Romanizes a String of Hangul Characters
